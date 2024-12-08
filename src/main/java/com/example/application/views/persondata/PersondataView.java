@@ -1,5 +1,5 @@
 package com.example.application.views.persondata;
-
+import pdfGenerator;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -24,16 +24,16 @@ public class PersondataView extends Composite<VerticalLayout> {
         VerticalLayout layoutColumn2 = new VerticalLayout();
         H3 h3 = new H3();
         FormLayout formLayout2Col = new FormLayout();
-        TextField textField = new TextField();
-        TextField textField2 = new TextField();
-        TextField textField3 = new TextField();
-        TextField textField4 = new TextField();
-        TextField textField5 = new TextField();
-        DatePicker datePicker = new DatePicker();
-        TextField textField6 = new TextField();
-        EmailField emailField = new EmailField();
+        TextField name = new TextField();
+        TextField surname = new TextField();
+        TextField address = new TextField();
+        TextField provincia = new TextField();
+        TextField country = new TextField();
+        DatePicker date = new DatePicker();
+        TextField phoneNumber = new TextField();
+        EmailField email = new EmailField();
         HorizontalLayout layoutRow = new HorizontalLayout();
-        Button buttonPrimary = new Button();
+        Button saveButton = new Button();
         Button buttonSecondary = new Button();
         getContent().addClassName(Gap.LARGE);
         getContent().setWidth("100%");
@@ -47,39 +47,49 @@ public class PersondataView extends Composite<VerticalLayout> {
         h3.setText("Raccolta del consenso privacy");
         h3.setWidth("100%");
         formLayout2Col.setWidth("100%");
-        textField.setLabel("Nome");
-        textField2.setLabel("Cognome");
-        textField3.setLabel("Indirizzo di residenza");
-        textField3.setWidth("min-content");
-        textField4.setLabel("Provincia di residenza");
-        textField4.setWidth("min-content");
-        textField5.setLabel("Stato di residenza");
-        textField5.setWidth("min-content");
-        datePicker.setLabel("Data di nascita");
-        textField6.setLabel("Numero di telefono");
-        emailField.setLabel("Email");
-        emailField.setWidth("min-content");
+        name.setLabel("Nome");
+        surname.setLabel("Cognome");
+        address.setLabel("Indirizzo di residenza");
+        address.setWidth("min-content");
+        provincia.setLabel("Provincia di residenza");
+        provincia.setWidth("min-content");
+        country.setLabel("Stato di residenza");
+        country.setWidth("min-content");
+        date.setLabel("Data di nascita");
+        phoneNumber.setLabel("Numero di telefono");
+        email.setLabel("Email");
+        email.setWidth("min-content");
         layoutRow.addClassName(Gap.MEDIUM);
         layoutRow.setWidth("100%");
         layoutRow.setHeight("min-content");
-        buttonPrimary.setText("Save");
-        buttonPrimary.setWidth("min-content");
-        buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        saveButton.setText("Save");
+        saveButton.setWidth("min-content");
+        saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonSecondary.setText("Cancel");
         buttonSecondary.setWidth("min-content");
         getContent().add(layoutColumn2);
         layoutColumn2.add(h3);
         layoutColumn2.add(formLayout2Col);
-        formLayout2Col.add(textField);
-        formLayout2Col.add(textField2);
-        formLayout2Col.add(textField3);
-        formLayout2Col.add(textField4);
-        formLayout2Col.add(textField5);
-        formLayout2Col.add(datePicker);
-        formLayout2Col.add(textField6);
-        formLayout2Col.add(emailField);
+        formLayout2Col.add(name);
+        formLayout2Col.add(surname);
+        formLayout2Col.add(address);
+        formLayout2Col.add(provincia);
+        formLayout2Col.add(country);
+        formLayout2Col.add(date);
+        formLayout2Col.add(phoneNumber);
+        formLayout2Col.add(email);
         layoutColumn2.add(layoutRow);
-        layoutRow.add(buttonPrimary);
+        layoutRow.add(saveButton);
         layoutRow.add(buttonSecondary);
+
+        saveButton.addClickListener(e ->
+                saveButton.getUI().ifPresent(ui ->
+                        ui.navigate("privacy"))
+                PdfGenerator.generatePdf(filePath, nome, cognome, email);
+
+        Notification notification = Notification
+                .show("pdf generato");
+        notification.setPosition(Notification.Position.MIDDLE);
+        );
     }
 }

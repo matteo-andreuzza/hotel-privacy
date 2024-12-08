@@ -7,10 +7,17 @@
     <groupId>com.example.application</groupId>
     <artifactId>hotel-privacy</artifactId>
     <name>hotel-privacy</name>
+    <modules>
+        <module>untitled</module>
+    </modules>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+
+    <packaging>pom</packaging>
+
 
     <properties>
+        <itext.version>9.0.0</itext.version>
+
         <java.version>23</java.version>
         <vaadin.version>24.5.7</vaadin.version>
     </properties>
@@ -21,7 +28,18 @@
         <version>3.3.6</version>
     </parent>
 
+
+
+
     <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>itext</id>
+            <url>https://repo.itextsupport.com/releases</url>
+        </repository>
         <repository>
             <id>Vaadin Directory</id>
             <url>https://maven.vaadin.com/vaadin-addons</url>
@@ -63,6 +81,18 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-core</artifactId>
+            <version>${itext.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>bouncy-castle-adapter</artifactId>
+            <version>${itext.version}</version>
         </dependency>
 
         <dependency>

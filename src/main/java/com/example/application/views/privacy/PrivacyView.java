@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
 @PageTitle("privacy")
-@Route("person-form")
+@Route("privacy")
 public class PrivacyView extends Composite<VerticalLayout> {
 
     public PrivacyView() {
